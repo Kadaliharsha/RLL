@@ -1,0 +1,18 @@
+=== Hospital Invoice ===
+
+Bill ID: B001
+Patient ID: 1001
+Patient Name: jOHN
+Date: 2025-05-20
+
+Doctor: Dr. Jordan (Cardiology)
+Consulting Charge: 300.00
+
+Services Used:
+  - X-ray: 500.00
+  - Blood Test: 300.00
+
+Service Total: 800.0
+Total Amount: 1100.0
+
+Thank you for choosing our hospital!

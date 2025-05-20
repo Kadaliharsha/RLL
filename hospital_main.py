@@ -4,6 +4,7 @@ from doctor import Doctor
 from service import Service, ServiceUsageDB
 from appointment import Appointment
 from billing import Bill
+from billing import compute_total_billing
 
 # --- Patient ---
 def patients_menu():
@@ -222,7 +223,9 @@ def billing_menu():
         print("2. View Bills")
         print("3. Update Bill")
         print("4. Delete Bill")
-        print("5. Main Menu")
+        print("5. Compute total billing")
+        print("6. Generate Invoice for Bill")
+        print("7. Main Menu")
         choice = input("Select an option: ")
  
         if choice == '1':
@@ -234,7 +237,9 @@ def billing_menu():
             else:
                 bill = Bill(bill_id, patient_id, billing_date)
             bill.add()
- 
+            # Generate bill ivoice immediately
+            bill.generate_invoice()
+            
         elif choice == '2':
             Bill.view()
  
@@ -253,8 +258,33 @@ def billing_menu():
             Bill.delete(bill_id)
  
         elif choice == '5':
+            patient_id = input("Enter Patient ID to compute total billing: ")
+            total = compute_total_billing(patient_id)
+            if total is not None:
+                print(f"Total bill for patient {patient_id}: {total}")
+
+        elif choice == '6':
+            bill_id = input("Enter Bill ID to generate invoice: ")
+            # You may need to fetch patient_id and billing_date from the database
+            # For demonstration, let's assume you fetch them:
+            from db_config import get_connection
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT patient_id, billing_date FROM billing WHERE bill_id=%s", (bill_id,))
+            row = cursor.fetchone()
+            cursor.close()
+            conn.close()
+            if row:
+                patient_id, billing_date = row
+                bill = Bill(bill_id, patient_id, billing_date)
+                bill.generate_invoice()
+            else:
+                print("Bill not found.")
             break
- 
+        
+        elif choice == '7':
+            break
+        
         else:
             print("Invalid Choice. Please try again.")
         

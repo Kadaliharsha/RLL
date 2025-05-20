@@ -155,4 +155,97 @@ class Bill:
         finally:
             cursor.close()
             conn.close()
- 
+
+    def generate_invoice(self):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+        try:
+            # Fetch patient details
+            cursor.execute("SELECT * FROM patients WHERE patient_id=%s", (self.patient_id,))
+            patient = cursor.fetchone()
+
+            # Fetch doctor and appointment details
+            cursor.execute("""
+                SELECT a.date, d.name AS doctor_name, d.specialization, a.consulting_charge
+                FROM appointments a
+                JOIN doctors d ON a.doctor_id = d.doctor_id
+                WHERE a.patient_id=%s
+                ORDER BY a.date DESC LIMIT 1
+            """, (self.patient_id,))
+            appt = cursor.fetchone()
+
+            # Fetch services used
+            cursor.execute("""
+                SELECT service_name, cost FROM temp_service_usage WHERE patient_id=%s
+            """, (self.patient_id,))
+            services = cursor.fetchall()
+
+            # Prepare invoice content
+            lines = []
+            lines.append("=== Hospital Invoice ===\n")
+            lines.append(f"Bill ID: {self.bill_id}")
+            lines.append(f"Patient ID: {self.patient_id}")
+            lines.append(f"Patient Name: {patient['name']}")
+            lines.append(f"Date: {self.billing_date or datetime.date.today()}\n")
+
+            if appt:
+                lines.append(f"Doctor: {appt['doctor_name']} ({appt['specialization']})")
+                lines.append(f"Consulting Charge: {appt['consulting_charge']}\n")
+            else:
+                lines.append("Doctor: N/A\nConsulting Charge: 0\n")
+
+            lines.append("Services Used:")
+            service_total = 0
+            for s in services:
+                lines.append(f"  - {s['service_name']}: {s['cost']}")
+                service_total += float(s['cost'])
+            lines.append(f"\nService Total: {service_total}")
+
+            consulting_charge = float(appt['consulting_charge']) if appt else 0.0
+            total = service_total + consulting_charge
+            lines.append(f"Total Amount: {total}\n")
+            lines.append("Thank you for choosing our hospital!\n")
+
+            # Write to file
+            filename = f"invoice_{self.bill_id}.txt"
+            with open(filename, "w") as f:
+                f.write('\n'.join(lines))
+
+            print(f"Invoice generated and saved as {filename}")
+
+        except Exception as e:
+            print("Error generating invoice:", e)
+        finally:
+            cursor.close()
+            conn.close()
+
+def compute_total_billing(patient_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        # Sum service costs
+        cursor.execute(
+            "SELECT COALESCE(SUM(cost), 0) FROM temp_service_usage WHERE patient_id=%s",
+            (patient_id,)
+            )
+        service_total = cursor.fetchone()[0] or 0
+
+        # Sum consulting charges
+        cursor.execute(
+            "SELECT COALESCE(SUM(consulting_charge), 0) FROM appointments WHERE patient_id=%s",
+            (patient_id,)
+            )
+        consulting_total = cursor.fetchone()[0] or 0
+
+        total_billing = service_total + consulting_total
+        print(f"Service Total: {service_total}")
+        print(f"Consulting Total: {consulting_total}")
+        print(f"Total Billing: {total_billing}")
+        return total_billing
+    except Exception as e:
+        print("Error computing total billing:", e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
