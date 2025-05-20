@@ -1,0 +1,301 @@
+appt_id,patient_id,doctor_id,date,diagnosis
+A001,1016,D202,2025-06-20,Dialysis
+A002,1027,D247,2024-10-12,"Stroke, Ischemic"
+A003,1123,D64,2025-11-19,"Diabetes Mellitus, Type 2, Uncontrolled"
+A004,1033,D08,2024-12-15,CT Scan
+A005,1271,D109,2025-08-23,"Diabetes Mellitus, Type 2, Uncontrolled"
+A006,1012,D46,2025-11-08,"Stroke, Ischemic"
+A007,1161,D68,2025-05-19,Urinary Tract Infection (UTI)
+A008,1100,D67,2025-07-13,Cardiac Stress Test
+A009,1256,D199,2025-03-17,ENT Checkup
+A010,1048,D131,2024-09-29,ENT Checkup
+A011,1102,D169,2025-11-25,"Cholecystitis, Acute"
+A012,1101,D118,2025-08-01,Pediatric Checkup
+A013,1074,D296,2024-10-26,"Diabetes Mellitus, Type 2, Uncontrolled"
+A014,1001,D150,2024-07-11,"Appendicitis, Acute"
+A015,1131,D13,2025-02-22,Gastroenteritis
+A016,1027,D42,2024-12-29,Cellulitis
+A017,1180,D220,2025-10-21,"Heart Failure, Congestive"
+A018,1021,D274,2025-07-12,Kidney Stone (Nephrolithiasis)
+A019,1095,D38,2025-01-29,ENT Checkup
+A020,1135,D139,2024-08-31,ENT Checkup
+A021,1272,D259,2025-09-05,Surgery
+A022,1028,D166,2025-01-29,Pediatric Checkup
+A023,1043,D06,2025-01-04,"Cholecystitis, Acute"
+A024,1238,D157,2024-06-29,Chemotherapy
+A025,1007,D87,2024-02-17,"Fracture, Hip"
+A026,1274,D65,2026-03-22,Dialysis
+A027,1173,D281,2024-07-16,ENT Checkup
+A028,1080,D32,2025-10-19,"Stroke, Ischemic"
+A029,1252,D249,2025-08-24,CT Scan
+A030,1231,D226,2025-03-14,Anxiety Disorder
+A031,1104,D178,2025-08-03,"Cholecystitis, Acute"
+A032,1241,D98,2025-09-03,Gastroenteritis
+A033,1063,D25,2025-06-11,Migraine Headache
+A034,1183,D201,2026-01-21,X-Ray
+A035,1159,D288,2026-02-21,"Heart Failure, Congestive"
+A036,1243,D54,2024-12-05,Kidney Stone (Nephrolithiasis)
+A037,1095,D38,2025-10-12,ENT Checkup
+A038,1120,D143,2025-09-14,"Appendicitis, Acute"
+A039,1231,D256,2025-05-05,"Diabetes Mellitus, Type 2, Uncontrolled"
+A040,1154,D02,2026-03-06,Kidney Stone (Nephrolithiasis)
+A041,1206,D237,2025-09-09,Migraine Headache
+A042,1192,D26,2024-12-04,"Pneumonia, Bacterial"
+A043,1200,D10,2025-07-04,Dialysis
+A044,1268,D44,2025-04-03,CT Scan
+A045,1146,D138,2026-03-30,"Cholecystitis, Acute"
+A046,1201,D282,2025-10-29,"Cholecystitis, Acute"
+A047,1113,D199,2024-06-30,ENT Checkup
+A048,1010,D18,2025-07-04,"Diabetes Mellitus, Type 2, Uncontrolled"
+A049,1227,D46,2025-10-19,Migraine Headache
+A050,1055,D139,2025-05-13,ENT Checkup
+A051,1247,D28,2024-12-14,Ultrasound
+A052,1275,D201,2024-05-25,X-Ray
+A053,1198,D108,2025-05-20,"Pneumonia, Bacterial"
+A054,1052,D287,2025-10-20,Acute Myocardial Infarction
+A055,1102,D246,2025-06-01,Chemotherapy
+A056,1118,D246,2025-10-02,Chemotherapy
+A057,1022,D71,2025-01-14,Chemotherapy
+A058,1138,D130,2025-08-07,Gastroenteritis
+A059,1172,D202,2025-06-19,Dialysis
+A060,1101,D27,2025-12-22,Cellulitis
+A061,1057,D03,2024-02-08,"Stroke, Ischemic"
+A062,1027,D99,2024-11-17,MRI Scan
+A063,1189,D121,2024-07-29,"Appendicitis, Acute"
+A064,1004,D237,2024-08-26,Migraine Headache
+A065,1106,D245,2024-12-12,Kidney Stone (Nephrolithiasis)
+A066,1069,D18,2025-05-17,"Diabetes Mellitus, Type 2, Uncontrolled"
+A067,1160,D20,2024-08-05,"Stroke, Ischemic"
+A068,1218,D278,2025-10-10,"Diabetes Mellitus, Type 2, Uncontrolled"
+A069,1273,D87,2024-10-16,Orthopedic Assessment
+A070,1192,D38,2025-09-21,ENT Checkup
+A071,1298,D238,2026-01-27,Dialysis
+A072,1290,D236,2025-05-06,Kidney Stone (Nephrolithiasis)
+A073,1189,D182,2024-11-16,Orthopedic Assessment
+A074,1071,D231,2025-10-27,Cellulitis
+A075,1146,D258,2026-04-25,Migraine Headache
+A076,1054,D256,2026-01-25,"Diabetes Mellitus, Type 2, Uncontrolled"
+A077,1298,D79,2025-06-25,Acute Myocardial Infarction
+A078,1134,D127,2024-08-21,"Diabetes Mellitus, Type 2, Uncontrolled"
+A079,1226,D296,2024-06-05,Gastroenteritis
+A080,1014,D111,2024-09-15,Kidney Stone (Nephrolithiasis)
+A081,1041,D188,2024-06-28,Kidney Stone (Nephrolithiasis)
+A082,1058,D254,2024-11-27,Kidney Stone (Nephrolithiasis)
+A083,1077,D264,2025-05-03,ENT Checkup
+A084,1106,D181,2025-05-13,Cellulitis
+A085,1082,D105,2025-06-02,Orthopedic Assessment
+A086,1131,D208,2024-05-31,Pediatric Checkup
+A087,1127,D01,2025-03-26,Gastroenteritis
+A088,1033,D106,2024-02-10,Kidney Stone (Nephrolithiasis)
+A089,1019,D228,2024-07-28,Cellulitis
+A090,1107,D194,2024-12-16,Gastroenteritis
+A091,1027,D24,2024-12-02,"Fracture, Hip"
+A092,1130,D216,2025-01-06,"Appendicitis, Acute"
+A093,1003,D184,2025-03-07,"Cholecystitis, Acute"
+A094,1161,D134,2025-02-15,Kidney Stone (Nephrolithiasis)
+A095,1023,D32,2025-05-30,Migraine Headache
+A096,1209,D179,2026-02-11,Pediatric Checkup
+A097,1122,D224,2024-05-05,Cellulitis
+A098,1296,D60,2025-02-07,"Stroke, Ischemic"
+A099,1079,D191,2025-08-26,Gastroenteritis
+A100,1142,D22,2025-01-01,MRI Scan
+A101,1226,D62,2024-04-15,Cellulitis
+A102,1101,D108,2025-02-13,Urinary Tract Infection (UTI)
+A103,1105,D234,2025-12-08,Ultrasound
+A104,1192,D85,2025-10-14,Anxiety Disorder
+A105,1291,D268,2025-11-22,Gastroenteritis
+A106,1266,D295,2025-04-11,Gastroenteritis
+A107,1126,D50,2025-03-26,Gastroenteritis
+A108,1216,D09,2025-12-31,Cardiac Stress Test
+A109,1204,D219,2026-03-25,Dialysis
+A110,1112,D230,2024-04-17,Pediatric Checkup
+A111,1071,D271,2025-11-04,"Appendicitis, Acute"
+A112,1024,D202,2025-05-28,Kidney Stone (Nephrolithiasis)
+A113,1264,D235,2025-02-15,Urinary Tract Infection (UTI)
+A114,1018,D110,2025-07-20,Chemotherapy
+A115,1156,D31,2024-12-03,Pediatric Checkup
+A116,1162,D300,2025-08-12,Urinary Tract Infection (UTI)
+A117,1044,D182,2025-01-27,Orthopedic Assessment
+A118,1197,D82,2024-08-01,Urinary Tract Infection (UTI)
+A119,1275,D268,2024-11-22,Gastroenteritis
+A120,1233,D23,2025-10-03,Cellulitis
+A121,1117,D18,2025-04-10,"Diabetes Mellitus, Type 2, Uncontrolled"
+A122,1038,D77,2025-10-26,"Diabetes Mellitus, Type 2, Uncontrolled"
+A123,1293,D40,2025-08-01,Anxiety Disorder
+A124,1156,D124,2024-06-21,Urinary Tract Infection (UTI)
+A125,1189,D187,2024-06-15,"Heart Failure, Congestive"
+A126,1241,D156,2024-12-10,Chemotherapy
+A127,1116,D167,2025-06-16,Cellulitis
+A128,1019,D36,2024-08-14,Migraine Headache
+A129,1041,D161,2024-11-14,"Heart Failure, Congestive"
+A130,1201,D293,2025-08-25,"Fracture, Hip"
+A131,1105,D99,2025-05-22,CT Scan
+A132,1262,D240,2025-07-06,Kidney Stone (Nephrolithiasis)
+A133,1223,D192,2025-04-07,Ultrasound
+A134,1295,D229,2025-01-20,Urinary Tract Infection (UTI)
+A135,1201,D198,2026-03-08,"Stroke, Ischemic"
+A136,1092,D132,2024-11-23,MRI Scan
+A137,1238,D71,2024-07-19,Chemotherapy
+A138,1009,D29,2025-09-25,ENT Checkup
+A139,1157,D34,2025-01-26,ENT Checkup
+A140,1262,D31,2025-11-20,Pediatric Checkup
+A141,1155,D231,2024-09-26,Cellulitis
+A142,1042,D252,2025-06-15,Pediatric Checkup
+A143,1151,D246,2024-12-24,Chemotherapy
+A144,1164,D266,2024-05-01,Migraine Headache
+A145,1111,D108,2025-05-13,Gastroenteritis
+A146,1269,D203,2025-10-18,"Stroke, Ischemic"
+A147,1103,D247,2025-07-18,"Stroke, Ischemic"
+A148,1082,D40,2025-01-09,Anxiety Disorder
+A149,1152,D01,2025-03-17,Gastroenteritis
+A150,1061,D63,2025-08-08,Anxiety Disorder
+A151,1097,D275,2025-07-06,"Hypertension, Uncontrolled"
+A152,1120,D243,2025-05-25,Chemotherapy
+A153,1282,D39,2025-02-08,Anxiety Disorder
+A154,1025,D255,2024-06-01,Orthopedic Assessment
+A155,1060,D53,2025-07-28,Kidney Stone (Nephrolithiasis)
+A156,1060,D81,2025-05-13,Gastroenteritis
+A157,1299,D51,2024-05-08,Dialysis
+A158,1268,D266,2025-09-23,"Stroke, Ischemic"
+A159,1059,D249,2025-01-19,MRI Scan
+A160,1170,D20,2025-02-17,"Stroke, Ischemic"
+A161,1026,D08,2025-08-16,X-Ray
+A162,1096,D238,2026-04-04,Dialysis
+A163,1103,D119,2025-12-14,Chemotherapy
+A164,1162,D171,2025-09-17,Orthopedic Assessment
+A165,1279,D192,2025-06-07,X-Ray
+A166,1243,D164,2024-11-15,Dialysis
+A167,1161,D57,2025-03-06,Anxiety Disorder
+A168,1236,D94,2024-02-12,Urinary Tract Infection (UTI)
+A169,1146,D180,2026-03-29,Migraine Headache
+A170,1220,D236,2025-07-13,Kidney Stone (Nephrolithiasis)
+A171,1234,D102,2025-03-12,Kidney Stone (Nephrolithiasis)
+A172,1078,D07,2024-12-08,Pediatric Checkup
+A173,1250,D44,2024-11-28,X-Ray
+A174,1174,D86,2025-05-11,Urinary Tract Infection (UTI)
+A175,1146,D289,2025-11-11,Anxiety Disorder
+A176,1119,D129,2025-07-22,ENT Checkup
+A177,1068,D150,2025-09-21,Surgery
+A178,1151,D127,2025-02-02,"Diabetes Mellitus, Type 2, Uncontrolled"
+A179,1038,D260,2026-02-04,Anxiety Disorder
+A180,1191,D241,2024-06-28,Kidney Stone (Nephrolithiasis)
+A181,1270,D47,2024-07-18,Cellulitis
+A182,1238,D200,2024-06-01,"Fracture, Hip"
+A183,1183,D165,2025-05-04,Kidney Stone (Nephrolithiasis)
+A184,1149,D270,2025-02-26,"Diabetes Mellitus, Type 2, Uncontrolled"
+A185,1209,D19,2025-09-23,ENT Checkup
+A186,1037,D174,2025-02-10,Anxiety Disorder
+A187,1016,D57,2025-11-15,Anxiety Disorder
+A188,1259,D171,2026-01-14,Orthopedic Assessment
+A189,1109,D246,2024-12-07,Chemotherapy
+A190,1201,D131,2025-07-31,ENT Checkup
+A191,1127,D161,2025-07-12,Cardiac Stress Test
+A192,1108,D110,2024-05-13,Chemotherapy
+A193,1232,D284,2024-08-08,Gastroenteritis
+A194,1103,D259,2025-07-28,Surgery
+A195,1227,D27,2025-11-14,Cellulitis
+A196,1247,D13,2024-05-22,Gastroenteritis
+A197,1055,D161,2025-09-28,Cardiac Stress Test
+A198,1294,D94,2025-02-09,Urinary Tract Infection (UTI)
+A199,1019,D10,2024-03-09,Dialysis
+A200,1125,D203,2025-11-10,Migraine Headache
+A201,1151,D47,2024-10-09,Cellulitis
+A202,1249,D194,2025-04-06,Gastroenteritis
+A203,1053,D30,2025-04-28,Chemotherapy
+A204,1168,D215,2025-04-24,Pediatric Checkup
+A205,1111,D252,2025-02-25,Pediatric Checkup
+A206,1277,D240,2025-07-22,Kidney Stone (Nephrolithiasis)
+A207,1037,D265,2025-04-14,"Heart Failure, Congestive"
+A208,1080,D185,2025-06-24,Urinary Tract Infection (UTI)
+A209,1246,D101,2025-02-07,MRI Scan
+A210,1097,D55,2025-01-05,"Cholecystitis, Acute"
+A211,1284,D198,2025-08-04,"Stroke, Ischemic"
+A212,1016,D293,2026-01-28,Orthopedic Assessment
+A213,1117,D198,2025-05-13,"Stroke, Ischemic"
+A214,1033,D32,2024-03-15,Migraine Headache
+A215,1173,D14,2024-06-21,Migraine Headache
+A216,1289,D46,2024-11-01,"Stroke, Ischemic"
+A217,1098,D241,2024-04-29,Urinary Tract Infection (UTI)
+A218,1195,D41,2025-04-21,"Stroke, Ischemic"
+A219,1080,D212,2025-12-04,"Fracture, Hip"
+A220,1132,D176,2024-05-22,Chemotherapy
+A221,1172,D110,2025-11-22,Chemotherapy
+A222,1075,D127,2025-07-27,"Diabetes Mellitus, Type 2, Uncontrolled"
+A223,1208,D79,2025-04-04,Cardiac Stress Test
+A224,1151,D124,2024-07-04,Kidney Stone (Nephrolithiasis)
+A225,1272,D56,2025-06-21,Orthopedic Assessment
+A226,1083,D159,2025-03-11,Pediatric Checkup
+A227,1287,D199,2025-12-09,ENT Checkup
+A228,1055,D165,2025-08-06,Kidney Stone (Nephrolithiasis)
+A229,1006,D298,2025-05-27,"Diabetes Mellitus, Type 2, Uncontrolled"
+A230,1199,D278,2025-03-31,"Diabetes Mellitus, Type 2, Uncontrolled"
+A231,1221,D268,2024-10-31,Gastroenteritis
+A232,1144,D182,2026-02-18,"Fracture, Hip"
+A233,1013,D44,2024-11-20,CT Scan
+A234,1300,D228,2024-07-30,Cellulitis
+A235,1043,D284,2025-03-30,Gastroenteritis
+A236,1262,D181,2025-06-13,Cellulitis
+A237,1268,D137,2025-07-18,"Diabetes Mellitus, Type 2, Uncontrolled"
+A238,1067,D197,2025-11-07,Pediatric Checkup
+A239,1260,D189,2026-01-01,Anxiety Disorder
+A240,1140,D249,2024-04-29,CT Scan
+A241,1270,D144,2024-09-03,Chemotherapy
+A242,1267,D112,2024-07-29,Kidney Stone (Nephrolithiasis)
+A243,1233,D243,2025-05-29,Chemotherapy
+A244,1087,D140,2025-08-02,"Stroke, Ischemic"
+A245,1175,D195,2025-03-01,Cardiac Stress Test
+A246,1295,D86,2025-02-05,"Pneumonia, Bacterial"
+A247,1097,D162,2024-10-31,"Stroke, Ischemic"
+A248,1116,D169,2024-12-13,"Cholecystitis, Acute"
+A249,1207,D176,2024-12-14,Chemotherapy
+A250,1019,D236,2024-09-19,Kidney Stone (Nephrolithiasis)
+A251,1077,D102,2024-12-19,Urinary Tract Infection (UTI)
+A252,1051,D51,2024-07-10,Kidney Stone (Nephrolithiasis)
+A253,1125,D113,2025-03-05,"Hypertension, Uncontrolled"
+A254,1128,D176,2025-02-15,Chemotherapy
+A255,1183,D148,2025-11-06,Cellulitis
+A256,1150,D112,2024-02-29,Urinary Tract Infection (UTI)
+A257,1050,D127,2025-12-25,"Diabetes Mellitus, Type 2, Uncontrolled"
+A258,1014,D54,2025-02-20,Urinary Tract Infection (UTI)
+A259,1158,D32,2024-10-17,Migraine Headache
+A260,1230,D198,2025-09-26,"Stroke, Ischemic"
+A261,1279,D22,2025-03-13,X-Ray
+A262,1252,D173,2025-10-11,"Stroke, Ischemic"
+A263,1091,D293,2024-05-24,"Fracture, Hip"
+A264,1260,D152,2025-05-27,Pediatric Checkup
+A265,1141,D214,2025-12-07,Dialysis
+A266,1085,D230,2024-12-18,Pediatric Checkup
+A267,1028,D147,2024-09-01,General Consultation
+A268,1133,D158,2025-09-19,"Diabetes Mellitus, Type 2, Uncontrolled"
+A269,1164,D70,2024-06-18,Migraine Headache
+A270,1084,D189,2025-05-02,Anxiety Disorder
+A271,1059,D158,2024-11-22,"Diabetes Mellitus, Type 2, Uncontrolled"
+A272,1283,D101,2025-03-29,X-Ray
+A273,1021,D282,2024-08-01,"Cholecystitis, Acute"
+A274,1282,D190,2025-03-10,Urinary Tract Infection (UTI)
+A275,1122,D125,2024-11-09,Cellulitis
+A276,1238,D271,2024-10-09,"Appendicitis, Acute"
+A277,1034,D230,2025-11-02,Pediatric Checkup
+A278,1172,D292,2025-08-20,Kidney Stone (Nephrolithiasis)
+A279,1229,D102,2024-12-29,Urinary Tract Infection (UTI)
+A280,1131,D145,2024-06-22,CT Scan
+A281,1107,D71,2025-01-16,Chemotherapy
+A282,1148,D219,2024-08-04,Kidney Stone (Nephrolithiasis)
+A283,1059,D253,2024-08-24,"Fracture, Hip"
+A284,1064,D208,2024-05-24,Pediatric Checkup
+A285,1073,D214,2024-08-23,Kidney Stone (Nephrolithiasis)
+A286,1012,D44,2025-11-26,MRI Scan
+A287,1274,D280,2025-11-02,Acute Myocardial Infarction
+A288,1023,D43,2025-12-29,Anxiety Disorder
+A289,1279,D243,2025-04-04,Chemotherapy
+A290,1004,D51,2025-07-15,Kidney Stone (Nephrolithiasis)
+A291,1197,D206,2024-12-09,Chemotherapy
+A292,1165,D224,2025-09-13,Cellulitis
+A293,1013,D54,2024-07-15,Urinary Tract Infection (UTI)
+A294,1283,D168,2024-11-26,Orthopedic Assessment
+A295,1220,D75,2025-09-21,"Hypertension, Uncontrolled"
+A296,1264,D286,2025-03-25,Kidney Stone (Nephrolithiasis)
+A297,1131,D55,2024-07-29,"Appendicitis, Acute"
+A298,1088,D295,2025-10-11,Gastroenteritis
+A299,1056,D151,2025-02-14,Orthopedic Assessment
+A300,1034,D02,2025-05-13,Urinary Tract Infection (UTI)

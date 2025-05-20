@@ -1,0 +1,301 @@
+service_id,service_name,cost
+S01,X-Ray,2606.17
+S02,X-Ray,2874.8
+S03,Dialysis,190.95
+S04,Obstetric Ultrasound,899.03
+S05,Blood Test,3442.12
+S06,MRI Scan,4177.79
+S07,Obstetric Ultrasound,1569.48
+S08,Cardiac Stress Test,4473.38
+S09,Ultrasound,3621.64
+S10,ENT Checkup,990.2
+S11,MRI Scan,2793.43
+S12,ECG,1793.05
+S13,Orthopedic Assessment,950.37
+S14,Eye Exam,3938.73
+S15,Blood Test,4829.14
+S16,Dialysis,1200.15
+S17,General Consultation,463.63
+S18,Physiotherapy,3037.56
+S19,CT Scan,3658.51
+S20,Surgery,1417.38
+S21,Dermatology Consultation,3442.27
+S22,Blood Test,2613.44
+S23,Physiotherapy,290
+S24,Surgery,732.45
+S25,Vaccination,975.49
+S26,Vaccination,4971.87
+S27,Pediatric Checkup,2627.29
+S28,Surgery,2915.01
+S29,Cardiac Stress Test,3687.35
+S30,ECG,2732.71
+S31,X-Ray,4570.11
+S32,Surgery,4049.2
+S33,ENT Checkup,2044.84
+S34,ENT Checkup,1818.26
+S35,Physiotherapy,4766.74
+S36,Blood Test,1750.98
+S37,Pediatric Checkup,4332.24
+S38,ENT Checkup,4159.87
+S39,General Consultation,2713.9
+S40,Ultrasound,4616.22
+S41,ENT Checkup,530.88
+S42,ECG,559.1
+S43,Pediatric Checkup,3522.46
+S44,Orthopedic Assessment,4457.88
+S45,ECG,839.82
+S46,Blood Test,1414.08
+S47,Blood Test,3378.83
+S48,X-Ray,863.3
+S49,Cardiac Stress Test,3521.79
+S50,Obstetric Ultrasound,2463.79
+S51,Pediatric Checkup,3419.35
+S52,Obstetric Ultrasound,2631.66
+S53,Obstetric Ultrasound,264.81
+S54,MRI Scan,1158.49
+S55,Dialysis,2897.27
+S56,Dental Cleaning,646.15
+S57,ECG,2525.58
+S58,X-Ray,733.15
+S59,Blood Test,311.4
+S60,Chemotherapy,932.47
+S61,ENT Checkup,2239.72
+S62,X-Ray,4394.06
+S63,Blood Test,4748.86
+S64,Chemotherapy,2416.93
+S65,Chemotherapy,2332.54
+S66,Physiotherapy,3204.58
+S67,Vaccination,1656.81
+S68,Dental Cleaning,632.01
+S69,Dermatology Consultation,302.95
+S70,Dental Cleaning,3206.41
+S71,ECG,4070.72
+S72,Ultrasound,3367.79
+S73,X-Ray,3276.25
+S74,Physiotherapy,2151.62
+S75,Chemotherapy,3300.15
+S76,Dental Cleaning,1085.35
+S77,Physiotherapy,3316.63
+S78,Orthopedic Assessment,2671.64
+S79,Physiotherapy,3755.18
+S80,Surgery,514.1
+S81,Eye Exam,3933.38
+S82,ECG,3451.85
+S83,Obstetric Ultrasound,3490.64
+S84,Vaccination,2509.49
+S85,Orthopedic Assessment,4878.04
+S86,Cardiac Stress Test,1057.46
+S87,Orthopedic Assessment,1530.15
+S88,Surgery,1176.9
+S89,Dialysis,288.44
+S90,General Consultation,4524.66
+S91,Surgery,446.51
+S92,Ultrasound,3055.72
+S93,X-Ray,3172.69
+S94,Physiotherapy,1920.81
+S95,Chemotherapy,115.54
+S96,ENT Checkup,4218.99
+S97,Dialysis,1955.44
+S98,X-Ray,2780.75
+S99,Dental Cleaning,3567.16
+S100,ECG,3392.63
+S101,Dialysis,3488.1
+S102,Pediatric Checkup,1745.16
+S103,Obstetric Ultrasound,2091.33
+S104,CT Scan,1236.97
+S105,Cardiac Stress Test,4845.74
+S106,Obstetric Ultrasound,1478.36
+S107,Dialysis,779.19
+S108,X-Ray,690.24
+S109,Cardiac Stress Test,4723.08
+S110,Chemotherapy,1789.6
+S111,MRI Scan,3681.16
+S112,Vaccination,4573.75
+S113,General Consultation,3519.89
+S114,CT Scan,1973.23
+S115,Orthopedic Assessment,4714.18
+S116,X-Ray,3695.63
+S117,Dental Cleaning,1230.4
+S118,X-Ray,4127.68
+S119,CT Scan,3815.04
+S120,X-Ray,2003.81
+S121,Physiotherapy,1040.93
+S122,General Consultation,3577.35
+S123,Dental Cleaning,4234.28
+S124,ECG,1874.8
+S125,Orthopedic Assessment,2213.05
+S126,Dental Cleaning,1815.16
+S127,Blood Test,1236.7
+S128,Vaccination,3284.22
+S129,Eye Exam,1982.67
+S130,Cardiac Stress Test,3306.03
+S131,Dialysis,1843.25
+S132,CT Scan,1814.68
+S133,Surgery,1016.5
+S134,Obstetric Ultrasound,4937.2
+S135,Chemotherapy,165.36
+S136,Dental Cleaning,2763
+S137,ECG,2826.49
+S138,Vaccination,420.04
+S139,ENT Checkup,4466.74
+S140,Orthopedic Assessment,597.58
+S141,Chemotherapy,3147.58
+S142,Physiotherapy,549.21
+S143,Eye Exam,3568.72
+S144,ENT Checkup,4412.58
+S145,X-Ray,3491.69
+S146,X-Ray,1367.55
+S147,ENT Checkup,4554.32
+S148,Blood Test,2919.11
+S149,General Consultation,1830.45
+S150,Orthopedic Assessment,4270.54
+S151,Chemotherapy,1268.59
+S152,Cardiac Stress Test,3913.2
+S153,CT Scan,275.27
+S154,Obstetric Ultrasound,4430.95
+S155,Chemotherapy,1418.29
+S156,ECG,2925.58
+S157,CT Scan,4557.78
+S158,Orthopedic Assessment,4963.33
+S159,Physiotherapy,358.01
+S160,ECG,4645.98
+S161,Cardiac Stress Test,2609.95
+S162,MRI Scan,4729.64
+S163,Dental Cleaning,2757.31
+S164,Blood Test,1357.6
+S165,Obstetric Ultrasound,3253.71
+S166,Orthopedic Assessment,2341.78
+S167,Blood Test,3173.49
+S168,Dermatology Consultation,2580.62
+S169,X-Ray,1150.79
+S170,Cardiac Stress Test,3685.75
+S171,Dialysis,4008.32
+S172,CT Scan,4389.28
+S173,Dental Cleaning,1547.99
+S174,Vaccination,3065.89
+S175,MRI Scan,470.76
+S176,Dermatology Consultation,1629.93
+S177,Physiotherapy,4086.72
+S178,Dermatology Consultation,4368.41
+S179,ENT Checkup,4459
+S180,Eye Exam,3465.05
+S181,Eye Exam,4584
+S182,Vaccination,2065.62
+S183,X-Ray,854.92
+S184,CT Scan,961.25
+S185,Pediatric Checkup,1157.67
+S186,Blood Test,55.88
+S187,General Consultation,1172.57
+S188,Vaccination,4658.35
+S189,Dialysis,3705.67
+S190,Vaccination,4591.51
+S191,ENT Checkup,3037.31
+S192,ECG,2299.38
+S193,Dermatology Consultation,1601.72
+S194,Chemotherapy,1935.86
+S195,ENT Checkup,3231.92
+S196,Pediatric Checkup,4042.34
+S197,Pediatric Checkup,696.11
+S198,Physiotherapy,3666.3
+S199,Dermatology Consultation,76.92
+S200,Pediatric Checkup,3270.77
+S201,MRI Scan,2292.59
+S202,Surgery,1043.19
+S203,ECG,3174.09
+S204,X-Ray,138.07
+S205,Dermatology Consultation,4200.83
+S206,Surgery,2651.45
+S207,Orthopedic Assessment,1886.14
+S208,Blood Test,2157.46
+S209,Obstetric Ultrasound,1362.22
+S210,ECG,2259.72
+S211,Orthopedic Assessment,4914.13
+S212,Orthopedic Assessment,3772.67
+S213,Chemotherapy,2628.58
+S214,Vaccination,2338.79
+S215,ECG,383.91
+S216,Vaccination,3133.06
+S217,Vaccination,3612.12
+S218,Orthopedic Assessment,2281.14
+S219,Eye Exam,3439.65
+S220,Orthopedic Assessment,3676.23
+S221,X-Ray,791.53
+S222,Vaccination,3064.53
+S223,CT Scan,4320.14
+S224,MRI Scan,107.52
+S225,Pediatric Checkup,4009.58
+S226,Dialysis,4769.78
+S227,Vaccination,570.64
+S228,General Consultation,2265.86
+S229,General Consultation,2216.98
+S230,Ultrasound,3122.45
+S231,X-Ray,1877.4
+S232,ECG,2006.86
+S233,Dialysis,1577.43
+S234,Physiotherapy,2980.81
+S235,Vaccination,964.73
+S236,Eye Exam,4838.85
+S237,Physiotherapy,4403.54
+S238,Surgery,641.62
+S239,Ultrasound,3465.93
+S240,ECG,4524.82
+S241,Pediatric Checkup,3040.44
+S242,Ultrasound,2482.47
+S243,CT Scan,3976.1
+S244,Dental Cleaning,926.27
+S245,Ultrasound,1743.05
+S246,Physiotherapy,1314.88
+S247,Pediatric Checkup,1201.76
+S248,Chemotherapy,3817.53
+S249,Chemotherapy,4720.08
+S250,Chemotherapy,2415.21
+S251,ENT Checkup,202.68
+S252,Eye Exam,2980.99
+S253,Vaccination,1717.03
+S254,ECG,2545.5
+S255,General Consultation,167.54
+S256,Dental Cleaning,1592.6
+S257,Blood Test,4294.9
+S258,ENT Checkup,2059.49
+S259,Eye Exam,2900.65
+S260,Vaccination,3471.23
+S261,Dialysis,4326.06
+S262,Surgery,4175.89
+S263,Cardiac Stress Test,3851.71
+S264,Orthopedic Assessment,1469.02
+S265,Pediatric Checkup,1563.83
+S266,Surgery,4138.22
+S267,ECG,2875.17
+S268,Blood Test,1278.25
+S269,MRI Scan,112.1
+S270,Eye Exam,1697.81
+S271,Dental Cleaning,1994.79
+S272,General Consultation,4016.44
+S273,Chemotherapy,4483.03
+S274,Vaccination,3788.37
+S275,Obstetric Ultrasound,3361.71
+S276,ECG,4135.08
+S277,ENT Checkup,360.07
+S278,Obstetric Ultrasound,3914.08
+S279,Dental Cleaning,382.33
+S280,X-Ray,704.66
+S281,Obstetric Ultrasound,3649.16
+S282,CT Scan,1292.93
+S283,Obstetric Ultrasound,2760.19
+S284,MRI Scan,116.47
+S285,Vaccination,406.04
+S286,Surgery,730.01
+S287,Dermatology Consultation,1739.99
+S288,Chemotherapy,2904.45
+S289,General Consultation,1078.16
+S290,Vaccination,4621.27
+S291,X-Ray,1325.83
+S292,Dental Cleaning,3486.92
+S293,CT Scan,3811.22
+S294,ENT Checkup,4988.36
+S295,Surgery,3948.2
+S296,ENT Checkup,1841.81
+S297,Orthopedic Assessment,1703.04
+S298,ECG,3728.93
+S299,Physiotherapy,1645.03
+S300,CT Scan,1930.85
