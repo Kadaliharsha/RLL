@@ -1,6 +1,8 @@
 from db_config import get_connection
 import re
- 
+import mysql.connector
+from mysql.connector import IntegrityError, Error
+
 class Patient:
     def __init__(self, patient_id, name, age, gender, admission_date, contact_no):
         self.patient_id = patient_id
@@ -54,18 +56,22 @@ class Patient:
             return
      
         # Insert into DB
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "INSERT INTO patients (patient_id, name, age, gender, admission_date, contact_no) VALUES (%s, %s, %s, %s, %s, %s)"
             cursor.execute(sql, (patient_id, self.name, age, self.gender, self.admission_date, self.contact_no))
             conn.commit()
             print("Patient added successfully.")
+        except IntegrityError:
+            print(f"Error: Duplicate Patient ID '{patient_id}'. Please use a unique ID.")
+        except Error as e:
+            print("Database error while adding patient:", e)
         except Exception as e:
-            print("Error adding patient:", e)
+            print("Unexpected error while adding patient:", e)
         finally:
-            cursor.close()
-            conn.close()
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
  
  
     def update(self):
@@ -78,69 +84,89 @@ class Patient:
         except ValueError:
             print("Invalid Patient ID. Must be an integer.")
             return
-        
+
+        # Validate Name
         if not self.name or not self.name.replace(' ', '').isalpha():
-            print("Invalid Name.")
+            print("Invalid Name. Name must contain only letters and spaces.")
             return
-        
-        if not isinstance(self.age, int) or self.age <= 0 or self.age > 120:
-            print("Invalid Age.")
+
+        # Validate Age
+        try:
+            age = int(self.age)
+            if age < 0 or age > 120:
+                print("Invalid Age. Must be between 0 and 120.")
+                return
+        except ValueError:
+            print("Invalid Age. Must be a number.")
             return
-        
+
+        # Validate Gender
         if self.gender not in ['M', 'F', 'Other']:
             print("Invalid Gender. Choose from M, F, Other.")
             return
-        
-        try:
-            import datetime
-            datetime.datetime.strptime(self.admission_date, "%Y-%m-%d")
-        except ValueError:
+
+        # Validate Admission Date using regex
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', self.admission_date):
             print("Invalid Admission Date. Use YYYY-MM-DD format.")
             return
+
+        # Validate Contact Number
         if not self.contact_no.isdigit() or len(self.contact_no) < 10:
-            print("Invalid Contact Number.")
+            print("Invalid Contact Number. Must be at least 10 digits.")
             return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = """UPDATE patients SET name=%s, age=%s, gender=%s, admission_date=%s, contact_no=%s WHERE patient_id=%s"""
-            cursor.execute(sql, (self.name, self.age, self.gender, self.admission_date, self.contact_no, self.patient_id))
+            cursor.execute(sql, (self.name, age, self.gender, self.admission_date, self.contact_no, patient_id))
             conn.commit()
-            print("Patient updated successfully.")
+            if cursor.rowcount == 0:
+                print(f"No patient found with ID '{patient_id}'.")
+            else:
+                print("Patient updated successfully.")
+        except Error as e:
+            print("Database error while updating patient:", e)
         except Exception as e:
-            print("Error updating patient:", e)
+            print("Unexpected error while updating patient:", e)
         finally:
-            cursor.close()
-            conn.close()
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
  
     @staticmethod
     def delete(patient_id):
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "DELETE FROM patients WHERE patient_id=%s"
             cursor.execute(sql, (patient_id,))
             conn.commit()
-            print("Patient deleted successfully.")
+            if cursor.rowcount == 0:
+                print(f"No patient found with ID '{patient_id}'.")
+            else:
+                print("Patient deleted successfully.")
+        except Error as e:
+            print("Database error while deleting patient:", e)
         except Exception as e:
-            print("Error deleting patient:", e)
+            print("Unexpected error while deleting patient:", e)
         finally:
-            cursor.close()
-            conn.close()
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
  
     @staticmethod
     def view():
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             cursor.execute("SELECT * FROM patients")
             rows = cursor.fetchall()
             print("patient_ID | Name | Age | Gender | Admission Date | Contact No")
             for row in rows:
                 print(" | ".join(str(x) for x in row))
+        except Error as e:
+            print("Database error while viewing patients:", e)
         except Exception as e:
-            print("Error viewing patients:", e)
+            print("Unexpected error while viewing patients:", e)
         finally:
-            cursor.close()
-            conn.close()
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
