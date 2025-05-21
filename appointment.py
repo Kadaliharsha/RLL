@@ -1,7 +1,20 @@
-from db_config import get_connection
 import re
-import datetime
- 
+from db_config import get_connection
+import mysql.connector
+from mysql.connector import IntegrityError, Error
+import csv
+
+def auto_appt_id():
+    from db_config import get_connection
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT appt_id FROM appointments WHERE appt_id LIKE 'A%'")
+    ids = [int(row[0][1:]) for row in cursor.fetchall() if row[0][1:].isdigit()]
+    cursor.close()
+    conn.close()
+    next_num = max(ids) + 1 if ids else 1
+    return f"A{next_num:03d}"
+
 class Appointment:
     def __init__(self, appt_id, patient_id, doctor_id, date, diagnosis):
         self.appt_id = appt_id
@@ -9,148 +22,205 @@ class Appointment:
         self.doctor_id = doctor_id
         self.date = date
         self.diagnosis = diagnosis
- 
+
     def add(self):
-        # Data validation
-        if not self.appt_id or not isinstance(self.appt_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.appt_id):
-            print("Invalid Appointment ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        if not self.patient_id or not isinstance(self.patient_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.patient_id):
-            print("Invalid Patient ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        if not self.doctor_id or not isinstance(self.doctor_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.doctor_id):
-            print("Invalid Doctor ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        try:
-            datetime.datetime.strptime(self.date, "%Y-%m-%d")
-        except ValueError:
+        # Validate patient_id
+        if not self.patient_id or not str(self.patient_id).isdigit():
+            print("Invalid Patient ID.")
+            return False
+        # Validate doctor_id
+        if not self.doctor_id or not isinstance(self.doctor_id, str):
+            print("Invalid Doctor ID.")
+            return False
+        # Validate date
+        if not self.date or not re.match(r'^\d{4}-\d{2}-\d{2}$', self.date):
             print("Invalid Date. Use YYYY-MM-DD format.")
-            return
-        if not self.diagnosis or not all(x.isalpha() or x.isspace() for x in self.diagnosis):
-            print("Invalid Diagnosis. Only letters and spaces allowed.")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+            return False
+        # Validate diagnosis
+        if not self.diagnosis or not isinstance(self.diagnosis, str):
+            print("Invalid Diagnosis.")
+            return False
+
         try:
-            # Check patient exists
-            cursor.execute("SELECT 1 FROM patients WHERE patient_id=%s", (self.patient_id,))
-            if cursor.fetchone() is None:
-                print("Patient ID does not exist.")
-                return
-            # Check doctor exists
-            cursor.execute("SELECT 1 FROM doctors WHERE doctor_id=%s", (self.doctor_id,))
-            if cursor.fetchone() is None:
-                print("Doctor ID does not exist.")
-                return
-            # Insert appointment
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "INSERT INTO appointments (appt_id, patient_id, doctor_id, date, diagnosis) VALUES (%s, %s, %s, %s, %s)"
             cursor.execute(sql, (self.appt_id, self.patient_id, self.doctor_id, self.date, self.diagnosis))
             conn.commit()
-            print("Appointment added successfully.")
+            return True
+        except mysql.connector.errors.IntegrityError as e:
+            if "PRIMARY" in str(e):
+                print(f"Error: Duplicate Appointment ID '{self.appt_id}'.")
+            else:
+                print("Database integrity error: ", e)
+            return False
         except Exception as e:
-            print("Error adding appointment:", e)
+            print("Error while adding appointment:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     def update(self):
-        # Data validation (same as add)
-        if not self.appt_id or not isinstance(self.appt_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.appt_id):
-            print("Invalid Appointment ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        if not self.patient_id or not isinstance(self.patient_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.patient_id):
-            print("Invalid Patient ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        if not self.doctor_id or not isinstance(self.doctor_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.doctor_id):
-            print("Invalid Doctor ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        try:
-            datetime.datetime.strptime(self.date, "%Y-%m-%d")
-        except ValueError:
+        # Validate patient_id
+        if not self.patient_id or not str(self.patient_id).isdigit():
+            print("Invalid Patient ID.")
+            return False
+        # Validate doctor_id
+        if not self.doctor_id or not isinstance(self.doctor_id, str):
+            print("Invalid Doctor ID.")
+            return False
+        # Validate date
+        if not self.date or not re.match(r'^\d{4}-\d{2}-\d{2}$', self.date):
             print("Invalid Date. Use YYYY-MM-DD format.")
-            return
-        if not self.diagnosis or not all(x.isalpha() or x.isspace() for x in self.diagnosis):
-            print("Invalid Diagnosis. Only letters and spaces allowed.")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+            return False
+        # Validate diagnosis
+        if not self.diagnosis or not isinstance(self.diagnosis, str):
+            print("Invalid Diagnosis.")
+            return False
+
         try:
-            # Check patient exists
-            cursor.execute("SELECT 1 FROM patients WHERE patient_id=%s", (self.patient_id,))
-            if cursor.fetchone() is None:
-                print("Patient ID does not exist.")
-                return
-            # Check doctor exists
-            cursor.execute("SELECT 1 FROM doctors WHERE doctor_id=%s", (self.doctor_id,))
-            if cursor.fetchone() is None:
-                print("Doctor ID does not exist.")
-                return
-            # Update appointment
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "UPDATE appointments SET patient_id=%s, doctor_id=%s, date=%s, diagnosis=%s WHERE appt_id=%s"
             cursor.execute(sql, (self.patient_id, self.doctor_id, self.date, self.diagnosis, self.appt_id))
             conn.commit()
             if cursor.rowcount == 0:
-                print("Appointment ID not found.")
+                print("No updates found.")
+                return False
             else:
                 print("Appointment updated successfully.")
+                return True
+        except Error as e:
+            print("Database error while updating appointment:", e)
+            return False
         except Exception as e:
-            print("Error updating appointment:", e)
+            print("Error while updating appointment:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+            
+    @staticmethod
+    def get_by_id(appt_id):
+        try:
+            conn = get_connection()
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM appointments WHERE appt_id = %s", (appt_id,))
+            return cursor.fetchone()
+        except Exception as e:
+            print("Error fetching appointment:", e)
+            return None
+        finally:
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     @staticmethod
     def delete(appt_id):
-        if not appt_id or not isinstance(appt_id, str) or not re.match(r'^[A-Za-z0-9]+$', appt_id):
-            print("Invalid Appointment ID. It must be alphanumeric (no spaces or special characters).")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "DELETE FROM appointments WHERE appt_id=%s"
             cursor.execute(sql, (appt_id,))
             conn.commit()
             if cursor.rowcount == 0:
                 print("Appointment ID not found.")
+                return False
             else:
-                print("Appointment deleted successfully.")
+                print("Appointment cancelled successfully.")
+                return True
+        except Error as e:
+            print("Database error while deleting appointment:", e)
+            return False
         except Exception as e:
-            print("Error deleting appointment:", e)
+            print("Error while deleting appointment:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     @staticmethod
     def view():
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM appointments")
+            rows = cursor.fetchall()
+            print("Appointment_ID | Patient_ID | Doctor_ID | Date | Diagnosis")
+            for row in rows:
+                print(" | ".join(str(x) for x in row))
+        except Error as e:
+            print("Database error while viewing appointments:", e)
+        except Exception as e:
+            print("Error while viewing appointments:", e)
+        finally:
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
+    @staticmethod
+    def filter_appointments():
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
+            start_date = input("Enter start date(YYYY-MM-DD): ")
+            end_date = input("Enter end date(YYYY-MM-DD):")
+            cursor.execute("SELECT * FROM appointments WHERE date BETWEEN %s and %s", (start_date, end_date))
+            for row in cursor.fetchall():
+                print(row)
+        except Error as e:
+            print("Database error while fetching appointments for given dates:", e)
+        except Exception as e:
+            print("Error while fetching appointments for given dates:", e)
+        finally:
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+            
+    @staticmethod
+    def days_between_appointments(patient_id):
         conn = get_connection()
         cursor = conn.cursor()
         try:
-            cursor.execute("SELECT * FROM appointments")
+            cursor.execute("SELECT date FROM appointments WHERE patient_id=%s ORDER BY date", (patient_id,))
             rows = cursor.fetchall()
-            print("ID | Patient ID | Doctor ID | Date | Diagnosis")
-            for row in rows:
-                print(" | ".join(str(x) for x in row))
+            dates = [row[0] for row in rows if row[0]]
+            if len(dates) < 2:
+                print("Not enough appointments to calculate days between.")
+                return []
+            days_between = []
+            for i in range(1, len(dates)):
+                days = (dates[i] - dates[i-1]).days
+                days_between.append(days)
+            for idx, days in enumerate(days_between, 1):
+                print(f"Days between appointment {idx} and {idx+1}: {days}")
+            return days_between
         except Exception as e:
-            print("Error viewing appointments:", e)
+            print("Error calculating days between appointments:", e)
+            return []
         finally:
             cursor.close()
             conn.close()
-            
-    def filter_appointments():
-        conn=get_connection()
-        cursor=conn.cursor()
+
+    @staticmethod
+    def export_appointment_summary_to_csv(filename="appointment_summary.csv"):
+        conn = get_connection()
+        cursor = conn.cursor()
         try:
-            start_date = input("Enter start date(YYYY-MM-DD): ")
-            end_date=input("Enter end date(YYYY-MM-DD):")
-            cursor.execute("SELECT * FROM appointments WHERE date BETWEEN %s and %s",(start_date,end_date))
-            for row in cursor.fetchall():
-                print(row)
+            cursor.execute("SELECT appt_id, patient_id, doctor_id, date, diagnosis, consulting_charge FROM appointments")
+            rows = cursor.fetchall()
+            if not rows:
+                print("No appointment records to export.")
+                return
+            with open(filename, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["Appointment ID", "Patient ID", "Doctor ID", "Date", "Diagnosis", "Consulting Charge"])
+                for row in rows:
+                    writer.writerow(row)
+            print(f"Appointment summary exported to {filename}")
         except Exception as e:
-            print("ERROR!!! Couldnt fetch appointments for given dates!",e)
+            print("Error exporting appointment summary:", e)
         finally:
             cursor.close()
             conn.close()
- 
+
+
+

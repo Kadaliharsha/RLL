@@ -1,117 +1,153 @@
-from db_config import get_connection
 import re
- 
+from db_config import get_connection
+import mysql.connector
+from mysql.connector import IntegrityError, Error
+
+def auto_service_id():
+    from db_config import get_connection
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT service_id FROM services WHERE service_id LIKE 'S%'")
+    ids = [int(row[0][1:]) for row in cursor.fetchall() if row[0][1:].isdigit()]
+    cursor.close()
+    conn.close()
+    next_num = max(ids) + 1 if ids else 1
+    return f"S{next_num:02d}"
+
 class Service:
     def __init__(self, service_id, service_name, cost):
         self.service_id = service_id
         self.service_name = service_name
         self.cost = cost
-
-    def __repr__(self):
-        return f"{self.service_name} (ID: {self.service_id}, Cost: {self.cost})"
- 
+        
+    # CRUD OPERATIONS
     def add(self):
-        # Data validation
-        if not self.service_id or not isinstance(self.service_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.service_id):
-            print("Invalid Service ID. It must be alphanumeric (no spaces or special characters).")
-            return
+        # Validate service name
         if not self.service_name or not re.match(r'^[A-Za-z0-9\s\-_]+$', self.service_name):
             print("Invalid Service Name.")
-            return
-        
+            return False
+        # Validate cost
         try:
             cost_val = float(self.cost)
             if cost_val < 0 or cost_val > 5000:
                 print("Cost must be between 0 and 5000.")
-                return
+                return False
         except ValueError:
-            print("Invalid Cost. Enter a valid number.")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+            print("Invalid Cost.")
+            return False
+
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "INSERT INTO services (service_id, service_name, cost) VALUES (%s, %s, %s)"
-            cursor.execute(sql, (self.service_id, self.service_name, self.cost))
+            cursor.execute(sql, (self.service_id, self.service_name, cost_val))
             conn.commit()
-            print("Service added successfully.")
+            return True
+        except IntegrityError:
+            print(f"Error: Duplicate Service ID '{self.service_id}'.")
+            return False
+        except Error as e:
+            print("Database error while adding service:", e)
+            return False
         except Exception as e:
-            print("Error adding service:", e)
+            print("Error while adding service:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     def update(self):
-        # Data validation (same as add)
-        if not self.service_id or not isinstance(self.service_id, str) or not re.match(r'^[A-Za-z0-9]+$', self.service_id):
-            print("Invalid Service ID. It must be alphanumeric (no spaces or special characters).")
-            return
-        if not self.service_name or not re.match(r'^[A-Za-z0-9\s\-\_]+$', self.service_name):
+        # Validate service name
+        if not self.service_name or not re.match(r'^[A-Za-z0-9\s\-_]+$', self.service_name):
             print("Invalid Service Name.")
-            return
+            return False
+        # Validate cost
         try:
             cost_val = float(self.cost)
             if cost_val < 0 or cost_val > 5000:
                 print("Cost must be between 0 and 5000.")
-                return
+                return False
         except ValueError:
-            print("Invalid Cost. Enter a valid number.")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+            print("Invalid Cost.")
+            return False
+
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "UPDATE services SET service_name=%s, cost=%s WHERE service_id=%s"
-            cursor.execute(sql, (self.service_name, self.cost, self.service_id))
+            cursor.execute(sql, (self.service_name, cost_val, self.service_id))
             conn.commit()
             if cursor.rowcount == 0:
-                print("Service ID not found.")
+                print("No updates found.")
+                return False
             else:
                 print("Service updated successfully.")
+                return True
+        except Error as e:
+            print("Database error while updating service:", e)
+            return False
         except Exception as e:
-            print("Error updating service:", e)
+            print("Error while updating service:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+    @staticmethod
+    def get_by_id(service_id):
+        try:
+            conn = get_connection()
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM services WHERE service_id = %s", (service_id,))
+            return cursor.fetchone()
+        except Exception as e:
+            print("Error fetching service:", e)
+            return None
+        finally:
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+        
     @staticmethod
     def delete(service_id):
-        if not service_id or not isinstance(service_id, str) or not re.match(r'^[A-Za-z0-9]+$', service_id):
-            print("Invalid Service ID. It must be alphanumeric (no spaces or special characters).")
-            return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "DELETE FROM services WHERE service_id=%s"
             cursor.execute(sql, (service_id,))
             conn.commit()
             if cursor.rowcount == 0:
                 print("Service ID not found.")
+                return False
             else:
                 print("Service deleted successfully.")
+                return True
+        except Error as e:
+            print("Database error while deleting service:", e)
+            return False
         except Exception as e:
-            print("Error deleting service:", e)
+            print("Error while deleting service:", e)
+            return False
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     @staticmethod
     def view():
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             cursor.execute("SELECT * FROM services")
             rows = cursor.fetchall()
-            print("ID | Name | Cost")
+            print("Service_ID | Service Name | Cost")
             for row in rows:
                 print(" | ".join(str(x) for x in row))
+        except Error as e:
+            print("Database error while viewing services:", e)
         except Exception as e:
-            print("Error viewing services:", e)
+            print("Error while viewing services:", e)
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
 class ServiceUsageDB:
     @staticmethod
     def add_service_for_patient(patient_id, service):
@@ -133,48 +169,101 @@ class ServiceUsageDB:
         except ValueError:
             print("Invalid Cost.")
             return
- 
-        conn = get_connection()
-        cursor = conn.cursor()
+
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "INSERT INTO temp_service_usage (patient_id, service_id, service_name, cost) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (patient_id, service.service_id, service.service_name, service.cost))
+            cursor.execute(sql, (patient_id, service.service_id, service.service_name, cost))
             conn.commit()
-            print(f"Added {service.service_name} (ID: {service.service_id}, Cost: {service.cost}) for patient {patient_id}")
+            print(f"Added {service.service_name} (ID: {service.service_id}, Cost: {cost}) for patient {patient_id}")
+        except IntegrityError:
+            print(f"Error: Duplicate service usage entry for patient {patient_id} and service {service.service_id}.")
+        except Error as e:
+            print("Database error while adding service usage:", e)
         except Exception as e:
-            print("Error adding service usage:", e)
+            print("Error while adding service usage:", e)
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     @staticmethod
     def get_services_for_patient(patient_id):
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "SELECT service_id, service_name, cost FROM temp_service_usage WHERE patient_id=%s"
             cursor.execute(sql, (patient_id,))
             rows = cursor.fetchall()
             return rows
+        except Error as e:
+            print("Database error while fetching services:", e)
+            return []
         except Exception as e:
-            print("Error fetching services:", e)
+            print("Error while fetching services:", e)
             return []
         finally:
-            cursor.close()
-            conn.close()
- 
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
     @staticmethod
     def clear_services_for_patient(patient_id):
-        conn = get_connection()
-        cursor = conn.cursor()
         try:
+            conn = get_connection()
+            cursor = conn.cursor()
             sql = "DELETE FROM temp_service_usage WHERE patient_id=%s"
             cursor.execute(sql, (patient_id,))
             conn.commit()
             print(f"Cleared services for patient {patient_id}")
+        except Error as e:
+            print("Database error while clearing services:", e)
         except Exception as e:
-            print("Error clearing services:", e)
+            print("Error while clearing services:", e)
         finally:
+            if 'cursor' in locals(): cursor.close()
+            if 'conn' in locals(): conn.close()
+
+# --- ServiceUsageTracker ---
+def service_usage_menu(patient_id):
+    while True:
+        print("\nService Usage of Patient:", patient_id)
+        print("1. Add Service Usage")
+        print("2. View Services Used")
+        print("3. Clear Services")
+        print("4. Back to Patient Management")
+        choice = input("Select an option: ")
+ 
+        if choice == '1':
+            service_id = input("Enter Service ID: ")
+            # Fetch service details from DB
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT service_id, service_name, cost FROM services WHERE service_id=%s", (service_id,))
+            row = cursor.fetchone()
             cursor.close()
             conn.close()
+            if not row:
+                print("Service ID not found.")
+            else:
+                service = Service(*row)
+                ServiceUsageDB.add_service_for_patient(patient_id, service)
  
+        elif choice == '2':
+            rows = ServiceUsageDB.get_services_for_patient(patient_id)
+            if rows:
+                print(f"Services used by {patient_id}:")
+                for r in rows:
+                    print(f"- {r[1]} (ID: {r[0]}, Cost: {r[2]})")
+            else:
+                print("No services recorded.")
+ 
+        elif choice == '3':
+            ServiceUsageDB.clear_services_for_patient(patient_id)
+ 
+        elif choice == '4':
+            break
+ 
+        else:
+            print("Invalid choice. Please try again.")
+
+
